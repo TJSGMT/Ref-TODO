@@ -1,0 +1,21 @@
+<li class="py-4 px-2 hover:bg-gray-50 border-t border-gray-300">
+    <div class="flex justify-between">
+        <div>
+            <%= check_box_tag "todo_item_item[done_at]" , "1" , todo_item.done_at.present?,
+                id: "todo_item-done-#{todo_item.id}" ,
+                data: { reflex: "change->TodoItemReflex#toggle_done" , id:todo_item.id }%>
+        </div>
+        <div class="w-2/5 <%= todo_item.done_at ? ' line-through' : '' %>">
+            <%= todo_item.title %>
+        </div>
+        <div class="w-2/5">
+            <%= check_box_tag "todo_item_item[completed_at]","1", todo_item.completed_at?,data: {reflex: "change->ExampleReflex#toggle", id: todo_item.id}%><br>
+            <%= todo_item.completed_at %>
+        </div>
+        <div>
+            <button data-reflex="click->TodoItemReflex#destroy" data-id="<%=todo_item.id%>">x</button>
+        </div>
+        
+    </div>
+</li>
+

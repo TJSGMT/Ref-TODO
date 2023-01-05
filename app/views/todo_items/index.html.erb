@@ -1,0 +1,26 @@
+<div class="max-w-none mx-auto mt-5">
+    <div class="bg-white overflow-hidden shadow sm:rounded-lg text-xl">
+        <div class="p-5">
+            <%= form_for(TodoItem.new, class: "mt-2" , data: {controller: "todo-item" ,action: "submit->todo-item#create" }) do |f| %>
+                <%=f.text_field :title, autofocus: true,class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-900 leading-tight focus:outline-none focus:shadow-outline", placeholder: "What needs to be done?" %>
+            <% end %>
+            <div class="text-gray-600">
+                <ul class="mt-5" aria-disabled="true">
+                    <% @todo_items.all.each do |todo_item| %>
+                        <%= render todo_item %>
+                    <% end %>
+                </ul>
+                <% if @finished_items.any? %>
+                    <div class="border-t-2">
+                        <h3 class="my-2">Done:</h3>
+                        <ul>
+                            <% @finished_items.all.each do |finished_item| %>
+                                <%= render finished_item %>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
